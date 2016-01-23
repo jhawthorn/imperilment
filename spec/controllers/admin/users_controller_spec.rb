@@ -47,7 +47,7 @@ describe Admin::UsersController do
   describe 'PUT update' do
     describe "with valid params" do
       it "updates the requested user" do
-        expect_any_instance_of(User).to receive(:update_attributes).with('first_name' => 'Joe')
+        expect_any_instance_of(User).to receive(:update_attributes).with(hash_including('first_name' => 'Joe'))
         put :update, id: user.to_param, user: { 'first_name' => 'Joe' }
       end
 

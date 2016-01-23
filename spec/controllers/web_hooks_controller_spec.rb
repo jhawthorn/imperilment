@@ -70,7 +70,7 @@ describe WebHooksController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested web hook" do
-        expect_any_instance_of(WebHook).to receive(:update).with({ url: 'http://www.example.com/new_hook' })
+        expect_any_instance_of(WebHook).to receive(:update).with(hash_including(url: 'http://www.example.com/new_hook'))
         put :update, id: web_hook.to_param, web_hook: { url: 'http://www.example.com/new_hook' }
       end
 
