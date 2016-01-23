@@ -1,4 +1,6 @@
 module LeaderBoardHelper
+  include BootstrapHelper
+
   def rank_class(rank)
     case rank
     when 1

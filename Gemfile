@@ -1,15 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 5.0.0.beta1'
 
 gem 'rabl-rails'
 
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
 gem "omniauth-google-oauth2"
 gem 'rolify'
 gem 'cancancan'
 
-gem 'simple_form', '3.1.0'
+gem 'simple_form', '~> 3.2'
 gem 'show_for'
 gem 'validate_url'
 
@@ -60,15 +60,18 @@ group :test do
   gem 'capybara'
   gem 'minitest' # To get rid of errors
   gem 'shoulda-matchers'
-  gem 'rspec-rails', '~> 3.0'
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, :git => "https://github.com/rspec/#{lib}.git", :branch => 'master'
+  end
   gem 'rspec-activemodel-mocks'
+  gem 'rails-controller-testing', github: 'rails/rails-controller-testing'
   gem 'factory_girl_rails', require: false
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
   gem 'timecop'
 
-  gem 'konacha'
-  gem 'konacha-chai-matchers'
+  #gem 'konacha'
+  #gem 'konacha-chai-matchers'
   gem 'ejs'
   gem 'poltergeist'
   gem 'webmock'
