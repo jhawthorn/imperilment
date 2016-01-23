@@ -31,14 +31,14 @@ describe Admin::UsersController do
       context 'when "true"' do
         it 'adds the admin role to @user' do
           expect_any_instance_of(User).to receive(:add_role).with(:admin)
-          put :grant_admin, id: user.to_param, admin: 'true'
+          put :grant_admin, params: { id: user.to_param, admin: 'true' }
         end
       end
 
       context 'when "false"' do
         it 'removes the admin role from @user'do
           expect_any_instance_of(User).to receive(:remove_role).with('admin')
-          put :grant_admin, id: user.to_param, admin: 'false'
+          put :grant_admin, params: { id: user.to_param, admin: 'false' }
         end
       end
     end

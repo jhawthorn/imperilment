@@ -71,7 +71,7 @@ describe LeaderBoardsController do
 
       context 'when a game_id is passed' do
         let(:other_game) { create :game }
-        subject { get :show, game_id: other_game, season: season }
+        subject { get :show, params: { game_id: other_game, season: season } }
         it 'should assign the game to @game' do
           subject
           expect(assigns(:game)).to eq(other_game)
@@ -92,7 +92,7 @@ describe LeaderBoardsController do
           create_question last_week_user
         end
 
-        subject { get :show, game_id: game.id, season: season }
+        subject { get :show, params: { game_id: game.id, season: season } }
 
         it 'has last weeks users' do
           subject

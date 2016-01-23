@@ -27,7 +27,7 @@ describe WebHooksController do
   end
 
   describe "POST create" do
-    subject { post :create, request_params }
+    subject { post :create, params: request_params }
 
     context "with valid params" do
       let(:request_params) { { web_hook: { url: 'http://www.example.com/fake_hook', active: true } } }
