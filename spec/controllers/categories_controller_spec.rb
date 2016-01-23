@@ -15,7 +15,7 @@ describe CategoriesController do
 
   describe "GET show" do
     it "assigns the requested category as @category" do
-      get :show, id: category.to_param
+      get :show, params: { id: category.to_param }
       expect(assigns(:category)).to eq(category)
     end
   end
@@ -29,7 +29,7 @@ describe CategoriesController do
 
   describe "GET edit" do
     it "assigns the requested category as @category" do
-      get :edit, id: category.to_param
+      get :edit, params: { id: category.to_param }
       expect(assigns(:category)).to eq(category)
     end
   end
@@ -77,16 +77,16 @@ describe CategoriesController do
     describe "with valid params" do
       it "updates the requested category" do
         expect_any_instance_of(Category).to receive(:update_attributes).with(hash_including("name" => "Test"))
-        put :update, id: category.to_param, category: { "name" => "Test" }
+        put :update, params: { id: category.to_param, category: { "name" => "Test" } }
       end
 
       it "assigns the requested category as @category" do
-        put :update, id: category.to_param, category: { "name" => "test" }
+        put :update, params: { id: category.to_param, category: { "name" => "test" } }
         expect(assigns(:category)).to eq(category)
       end
 
       it "redirects to the category" do
-        put :update, id: category.to_param, category: { "name" => "test" }
+        put :update, params: { id: category.to_param, category: { "name" => "test" } }
         expect(response).to redirect_to(category)
       end
     end
@@ -96,7 +96,7 @@ describe CategoriesController do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Category).to receive(:save).and_return(false)
         allow_any_instance_of(Category).to receive(:errors).and_return(double(:errors, empty?: false))
-        put :update, id: category.to_param, category: { "name" => "invalid value" }
+        put :update, params: { id: category.to_param, category: { "name" => "invalid value" } }
         expect(assigns(:category)).to eq(category)
       end
 
@@ -104,7 +104,7 @@ describe CategoriesController do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Category).to receive(:save).and_return(false)
         allow_any_instance_of(Category).to receive(:errors).and_return(double(:errors, empty?: false))
-        put :update, id: category.to_param, category: { "name" => "invalid value" }
+        put :update, params: { id: category.to_param, category: { "name" => "invalid value" } }
         expect(response).to render_template("edit")
       end
     end
@@ -113,12 +113,12 @@ describe CategoriesController do
   describe "DELETE destroy" do
     it "destroys the requested category" do
       expect do
-        delete :destroy, id: category.to_param
+        delete :destroy, params: { id: category.to_param }
       end.to change(Category, :count).by(-1)
     end
 
     it "redirects to the categories list" do
-      delete :destroy, id: category.to_param
+      delete :destroy, params: { id: category.to_param }
       expect(response).to redirect_to(categories_url)
     end
   end

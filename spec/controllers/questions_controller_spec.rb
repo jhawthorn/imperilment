@@ -159,7 +159,7 @@ describe QuestionsController do
         subject { assigns(:question).correct }
         context 'when user is an admin' do
           before do
-            put :update, id: question.to_param, game_id: question.answer.game, answer_id: question.answer, question: { correct: true }
+            put :update, params: { id: question.to_param, game_id: question.answer.game, answer_id: question.answer, question: { correct: true } }
           end
           it { is_expected.to be_truthy }
         end
@@ -167,7 +167,7 @@ describe QuestionsController do
         context 'when user is not an admin' do
           before do
             @ability.cannot :correct, Question
-            put :update, id: question.to_param, game_id: question.answer.game, answer_id: question.answer, question: { correct: true }
+            put :update, params: { id: question.to_param, game_id: question.answer.game, answer_id: question.answer, question: { correct: true } }
           end
           it { is_expected.to be_nil }
         end
