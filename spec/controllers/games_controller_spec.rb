@@ -38,18 +38,18 @@ describe GamesController do
     describe "with valid params" do
       it "creates a new Game" do
         expect do
-          post :create, default_params
+          post :create, params: default_params
         end.to change(Game, :count).by(1)
       end
 
       it "assigns a newly created game as @game" do
-        post :create, default_params
+        post :create, params: default_params
         expect(assigns(:game)).to be_a(Game)
         expect(assigns(:game)).to be_persisted
       end
 
       it "redirects to the created game" do
-        post :create, default_params
+        post :create, params: default_params
         expect(response).to redirect_to(Game.last)
       end
     end
@@ -59,7 +59,7 @@ describe GamesController do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Game).to receive(:save).and_return(false)
         allow_any_instance_of(Game).to receive(:errors).and_return(double(:errors, empty?: false))
-        post :create, default_params
+        post :create, params: default_params
         expect(assigns(:game)).to be_a_new(Game)
       end
 
@@ -67,7 +67,7 @@ describe GamesController do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Game).to receive(:save).and_return(false)
         allow_any_instance_of(Game).to receive(:errors).and_return(double(:errors, empty?: false))
-        post :create, default_params
+        post :create, params: default_params
         expect(response).to render_template("new")
       end
     end

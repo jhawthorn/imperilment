@@ -38,18 +38,18 @@ describe CategoriesController do
     describe "with valid params" do
       it "creates a new Category" do
         expect do
-          post :create, default_params
+          post :create, params: default_params
         end.to change(Category, :count).by(1)
       end
 
       it "assigns a newly created category as @category" do
-        post :create, default_params
+        post :create, params: default_params
         expect(assigns(:category)).to be_a(Category)
         expect(assigns(:category)).to be_persisted
       end
 
       it "redirects to the created category" do
-        post :create, default_params
+        post :create, params: default_params
         expect(response).to redirect_to(Category.last)
       end
     end
@@ -59,7 +59,7 @@ describe CategoriesController do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Category).to receive(:save).and_return(false)
         allow_any_instance_of(Category).to receive(:errors).and_return(double(:errors, empty?: false))
-        post :create, default_params
+        post :create, params: default_params
         expect(assigns(:category)).to be_a_new(Category)
       end
 
@@ -67,7 +67,7 @@ describe CategoriesController do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Category).to receive(:save).and_return(false)
         allow_any_instance_of(Category).to receive(:errors).and_return(double(:errors, empty?: false))
-        post :create, default_params
+        post :create, params: default_params
         expect(response).to render_template("new")
       end
     end
