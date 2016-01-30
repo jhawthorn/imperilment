@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 5.0.0.beta1'
+gem 'rails', '~> 5.0.0.beta2'
 
 gem 'rabl-rails'
 
