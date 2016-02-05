@@ -78,7 +78,8 @@ group :test do
 end
 
 group :production do
-  gem 'mysql2'
   gem 'exception_notification'
   gem 'unicorn'
 end
+
+gem 'mysql2'

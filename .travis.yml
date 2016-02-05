@@ -1,5 +1,10 @@
 sudo: false
 bundler_args: --without development production
+services:
+  - mysql
+env:
+  global:
+    DATABASE_URL: mysql2://travis:@localhost/imperilment_test
 rvm:
   - 2.2.4
 script:
